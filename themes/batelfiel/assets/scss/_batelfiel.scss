@@ -1,0 +1,376 @@
+$fuenteLondrinaSolid:"Londrina solid",cursive;
+$anchoIconoSocial: 36px;
+$altoIconoSocial: 37px;
+
+body{
+	font-size: 16px;
+	font-family: #{$fuenteLondrinaSolid};
+	background-color: #363636;
+	background-image: url(/images/batelfiel/fondo.jpg);
+	background-size: cover;
+}
+
+article{
+	h2{
+		font-size: 2em;
+		color: #474747;
+		padding: 1em;
+		text-transform: uppercase;
+	}
+	h3{
+		font-size: 1.7em;
+		padding: 1em;
+	}
+}
+
+
+/* Cabecera */
+
+#pagina > header{
+    position: relative;
+    height: 119px;
+    overflow: hidden;
+    
+    h1{
+	    float: left;
+	    height: 119px;
+	    overflow: hidden;
+	    
+	    a.logo{
+			display: block;
+		}
+		
+		span{
+			display: none;
+		}	
+	}
+	
+	.social{
+		position: absolute;
+		right: 0;
+		bottom: 0.6875em; // 11px
+		
+		h2{
+			font: 0.9125em #{$fuenteLondrinaSolid};
+			color: White;
+			text-transform: uppercase;
+			text-align: right;
+		}
+		
+		li{
+			float: left;
+			margin-left: 0.4375em; // 7px
+			
+			&:first-child{
+				margin-left: 0;
+			}
+			
+			a{
+				display: block;
+				width: 36px;
+				height: 37px;
+				background: url(/images/batelfiel/social.png) 0 0 no-repeat;
+			}
+			
+			&.battlelog a{
+			    background-position: 0 0;
+			    
+			    &:hover{
+					background-position: #{-$anchoIconoSocial} 0;
+				} 
+			}
+			
+			&.gplus a{
+			    background-position: 0 #{-($altoIconoSocial)};
+			    
+			    &:hover{
+				    background-position: #{-$anchoIconoSocial} #{-($altoIconoSocial)};
+				} 
+			}
+			
+			&.twitter a{
+			    background-position: 0 #{-($altoIconoSocial * 2)};
+			    
+			    &:hover{
+				    background-position: #{-$anchoIconoSocial} #{-($altoIconoSocial * 2)};
+				} 
+			}
+			
+			&.rss a{
+				background-position: 0 #{-($altoIconoSocial * 3)};
+				
+				&:hover{
+					background-position: #{-$anchoIconoSocial} #{-($altoIconoSocial * 3)};
+				}
+			}
+			
+			&.facebook a{
+				background-position: 0 #{-($altoIconoSocial * 4)};
+				
+				&:hover{
+					background-position: #{-$anchoIconoSocial} #{-($altoIconoSocial * 4)};
+				}
+			}
+			
+			span{
+				display: none;
+			}
+		}
+	}
+}
+
+
+// Contenido
+
+#contenido{
+	background: url(/images/batelfiel/fondo_cen.gif) 0 0 repeat-y;
+	
+	.dec1{
+		background: url(/images/batelfiel/fondo_sup.gif) 0 0 no-repeat;
+		
+		.dec2{
+			background: url(/images/batelfiel/fondo_inf.gif) 0 100% no-repeat;
+			min-height: 110px;
+			padding-bottom: 1em;
+		}
+	}
+	
+	.logoDestructores{
+		clear: both;
+		margin-left: auto;
+	    margin-right: auto;
+	}
+	
+	// Visor de tiras
+	
+	#visor{
+		padding-top: 1em;
+		
+		h1{
+			font: 1.375em Anton, sans-serif;   // 22px
+			float: left;
+		    color: Black;
+		    text-transform: uppercase;
+		    margin-left: 0.9em;
+		    
+		    em{
+				font-size: 0.8181em;   // 18px
+			}	
+		}
+		
+		#compartir{
+			float: right;			
+			padding: 0.9em 1.3em 0 0;
+			
+			p{
+				display: block;
+				float: left;
+				color: #666666;
+				text-transform: uppercase;
+				font-size: 0.875em;
+				line-height: 20px;
+				min-height: 20px;
+			}
+			.addthis_toolbox{
+				float: left;
+				width: 138px;
+			}
+		}
+		
+		img.vistaPrevia{
+			margin: 0 auto;
+		    width: 936px;
+			display: block;
+			min-height: 276px;
+		}
+		
+		ul{
+			width: 920px;
+			margin: 0 auto;
+			
+			li{
+				width: 24.9%;
+				float: left;
+				
+				&.anterior a,&.siguiente a{
+			    	background: url(/images/batelfiel/boton_sig_ant.jpg) 0 0 no-repeat;
+			    }
+				
+				a{
+					display: block;
+					font-size: 1.0667em; /* 15px */
+					line-height: 33px;   
+					color: #666666;
+					text-decoration: none;
+					text-transform: uppercase;
+					height: 33px;
+					opacity: 0.7;
+
+					&.activo{
+						opacity: 1;
+					}					
+					&.activo:hover{
+						color: #474747;
+					}
+				}
+				
+				&.anterior a{
+					margin-left: 4.5em;
+					background-position: 0 0;
+					padding-left: 37px;
+					
+					&.activo:hover{
+						background-position: 0 -33px;
+					} 
+				}
+				&.siguiente a{
+					margin-right: 4.5em;
+					background-position: 100% -66px;
+				    padding-right: 37px;
+				    text-align: right;
+				    
+				    &.activo:hover{
+				    	background-position: 100% -99px;
+				    }
+				}
+				&.ultima{
+					text-align: right;
+				}
+				&.primera a,
+				&.ultima a{
+					font-size: 0.75em;
+					text-decoration: underline;
+				}
+			}
+		}
+	}
+}
+
+
+// Visor de miniaturas
+
+#contenido #miniaturas{
+	clear: both;
+	padding: 2.875em 0; // 46px
+	width: 837px;
+	margin: 0 auto 9.5em auto;
+	
+	ul li{
+		&.anterior a, &.siguiente a{
+			background-image: url(/images/batelfiel/flecha_tiras.gif);
+			background-repeat: no-repeat;
+		}
+		&.anterior a, &.siguiente a,
+		&.anterior > span, &.siguiente > span{			
+			display: block;
+		    height: 124px;
+		    width: 20px;
+		}
+		&.anterior{
+			float: left;
+			margin-right: 0.9375em; // 15px
+			
+			a{
+			    background-position: 0 50%;
+			    
+			    &:hover{
+					background-position: -20px 50%;
+				}
+			}
+		}
+		&.siguiente{
+			float: right;
+			margin-left: 0.9375em; // 15px
+			
+			a{
+			    background-position: -41px 50%;
+			    &:hover{
+					background-position: -62px 50%;
+				}	
+			}
+		}
+		&.anterior a span, &.siguiente a span{
+			display: none;
+		}
+		&.miniatura{
+			float: left;
+			margin-right: 2.25em; // 37px
+			
+			&.col_5{
+				margin-right: 0;
+			}
+			
+			&,a{
+				display: block;
+			    width: 124px;
+			    height: 124px;
+			}
+			a{
+				position: relative;
+			    background-image: url(/images/batelfiel/recuadro_miniatura.jpg);
+			    opacity: 0.6;
+			}
+			&.actual a,
+			&:hover a{
+				opacity: 1;
+			}
+			&.actual a{
+				cursor: default;
+			}
+			span{
+				display: none;
+				position: absolute;
+				width: 22px;
+				height: 18px;
+				left: 50px;
+				top: -13px;
+				background: url(/images/batelfiel/flecha_miniatura.gif) 0 0 no-repeat;
+			}
+			&.actual span{
+				display: block;
+			}
+			a{
+				img{
+					display: block;
+					position: absolute;
+					left: 11px;
+					top: 12px;
+				}
+			}
+			p{
+				font-size: 0.8125em;
+				line-height: 130%;
+				color: #919191;
+				text-transform: uppercase;
+				text-align: center;
+				margin-top: 0.5em;
+			}
+			&.actual p,
+			&:hover p{
+				color: #474747;
+			}
+		}
+	}
+}
+
+// Pie
+#pagina > footer{
+	.creativeCommons{
+		clear: both;
+		font: 0.8em Arial, Helvetica, sans-serif;
+		color: White;
+		margin: 0 auto;
+		padding: 4em 0 0 0;
+		width: 350px;
+		text-align: center;
+		
+		a{
+			color: #799DCE;
+			text-decoration: none;
+			
+			&:hover{
+				text-decoration: underline;
+			}
+		}
+	}
+}

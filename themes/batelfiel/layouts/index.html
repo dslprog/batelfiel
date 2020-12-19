@@ -1,0 +1,9 @@
+{{ define "main" }}
+
+	{{ $comicStrips := .GetPage "/tira" }}
+	{{ $orderedPages := sort $comicStrips.Pages "Params.orden" "asc" }}	
+	{{ $lastPage := index (last 1 $orderedPages) 0 }}
+	
+	{{ partial "comicstrip" $lastPage }}
+
+{{ end }}

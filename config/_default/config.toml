@@ -1,0 +1,5 @@
+baseURL = "http://localhost/"
+languageCode = "es-es"
+title = "Batelfiel"
+theme="batelfiel"
+disableKinds=["taxonomy","term"]

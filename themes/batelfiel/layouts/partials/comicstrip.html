@@ -1,0 +1,129 @@
+{{ $previewCarouselSize := 5 }}
+
+{{ $comicStrips := .GetPage "/tira" }}    
+{{ $orderedPages := sort $comicStrips.Pages "Params.orden" "asc" }}	
+{{ $firstPage := index (first 1 $orderedPages) 0 }}
+{{ $lastPage := index (last 1 $orderedPages) 0 }}
+{{ $hasPrevious := (gt .Params.orden 1) }}
+{{ $hasNext := (lt .Params.orden $lastPage.Params.orden) }}
+{{ $previousPage := "" }}
+{{ $nextPage := "" }}
+{{ $pageImages := .Resources.ByType "image" }}			
+{{ $mainImage := "" }}
+{{ $previousOrder := sub .Params.orden 1 }}
+{{ $nextOrder := add .Params.orden 1 }}
+{{ $minPreviewCarouselOrder := sub .Params.orden 2 }}
+{{ $maxPreviewCarouselOrder := add .Params.orden 2 }}
+
+{{ if lt $minPreviewCarouselOrder 1 }}
+    {{ $minPreviewCarouselOrder = 1 }}
+    {{ $maxPreviewCarouselOrder = $previewCarouselSize }}
+{{ end }}
+
+{{ if gt $maxPreviewCarouselOrder $lastPage.Params.orden }}	
+    {{ $maxPreviewCarouselOrder = $lastPage.Params.orden }}
+    {{ $minPreviewCarouselOrder = sub $lastPage.Params.orden $previewCarouselSize }}
+    {{ if lt $minPreviewCarouselOrder 1 }}
+        {{ $minPreviewCarouselOrder = 1 }}
+    {{ end }}
+{{ end }}	
+
+{{ if $hasPrevious }}
+    {{ $previousPage = index (where $orderedPages "Params.orden" $previousOrder) 0 }}
+{{ end }}
+
+{{ if $hasNext }}
+    {{ $nextPage = index (where $orderedPages "Params.orden" $nextOrder) 0 }}
+{{ end }}
+
+{{ range $pageImages }}
+    {{ if not (findRE ".+_miniatura.+" .Name) }}
+        {{ $mainImage = . }}	
+    {{ end }}
+{{ end }}
+
+<article>
+    
+    <div id="visor">
+    
+        <h1>{{ .Params.orden }}. {{ .Title }}</h1>
+        <div id="compartir">
+            <p>Comparte esta tira:</p>
+            <div class="addthis_toolbox addthis_default_style " addthis:url="<?= $this->urlTiraActual ?>">
+                <a class="addthis_button_preferred_1"></a>
+                <a class="addthis_button_preferred_2"></a>
+                <a class="addthis_button_preferred_3"></a>
+                <a class="addthis_button_preferred_4"></a>
+                <a class="addthis_button_compact"></a>
+                <a class="addthis_counter addthis_bubble_style"></a>
+            </div>
+            <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-5050d5b8725ae25c"></script>
+        </div>			
+
+        <img class="vistaPrevia" src="{{ $mainImage.RelPermalink }}" alt="Tira #{{ .Params.orden }}"/>
+        <ul>
+            <li class="primera"><a class="activo" href="{{ $firstPage.RelPermalink }}">Ver la más antigua</a></li>
+
+            {{ if $hasPrevious }}
+
+                <li class="anterior">
+                    <a class="activo" href="{{ $previousPage.RelPermalink }}">Tira anterior</a>
+                </li>					
+
+            {{ end }}
+
+            {{ if $hasNext }}
+
+                <li class="siguiente">
+                    <a class="activo" href="{{ $nextPage.RelPermalink }}">Tira siguiente</a>
+                </li>
+
+            {{ end }}
+            <li class="ultima"><a class="activo" href="{{ $lastPage.RelPermalink }}">Ver la más reciente</a></li>
+        </ul>
+    </div>
+    <div id="miniaturas">
+        <ul>
+            {{ if $hasPrevious }}
+
+                <li class="anterior">
+                    <a href="{{ $previousPage.RelPermalink }}" title="Página anterior"><span>Página anterior</span></a>
+                </li>
+
+            {{ end }}
+                            
+            {{ range $index,$page := last $previewCarouselSize (first $maxPreviewCarouselOrder $orderedPages) }}
+
+                {{ $images := .Resources.ByType "image" }}
+                {{ $thumbnail := "" }}
+                
+                {{ range $images }}
+                    {{ if findRE ".+_miniatura.+" .Name }}
+                        {{ $thumbnail = . }}						
+                    {{ end }}
+                {{ end }}
+                
+                {{ $actual := (eq $page.Params.orden $.Params.orden) }}
+                {{ $order := $page.Params.orden }}
+                
+                <li class="miniatura col_{{ add $index 1 }}{{ if $actual }} actual{{ end }}">
+                    <a href="{{ $page.RelPermalink }}">
+                        <span></span>
+                        <img src="{{ $thumbnail.RelPermalink }}" alt="Miniatura de tira #{{ $order }}" />
+                    </a>
+                    <p>{{ (print $order ". " .Title) | safeHTML }}{{ with $page.Params.fechaPub }}<br/>{{ dateFormat "02-01-2006" . }}{{ end }}</p>
+                </li>					
+
+            {{ end }}
+        
+            {{ if $hasNext }}
+
+                <li class="siguiente">
+                    <a href="{{ $nextPage.RelPermalink }}" title="Página siguiente"><span>Página siguiente</span></a>
+                </li>
+
+            {{ end }}
+        </ul> 
+    </div>
+    <a class="logoDestructores" href="{{ site.BaseURL }}" title="Destructores Productions"><span>Destructores Productions</span></a>
+</article>

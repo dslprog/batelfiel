@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="{{ $.Site.LanguageCode | default "es" }}">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="format-detection" content="telephone=no" />			
+		<meta name="description" content="" />
+		<link rel="shortcut icon" href="" type="image/x-icon" />
+		<title>Batelfiel</title>
+		
+		<link rel="stylesheet" href="{{ "css/reset.css" | absURL }}" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton|Londrina+Solid" />
+
+		{{ $options := (dict "outputStyle" "compressed" "enableSourceMap" true) }}		
+		{{ $style := resources.Get "scss/main.scss" | resources.ToCSS $options }}
+		<link rel="stylesheet" href="{{ $style.RelPermalink }}" />
+		
+		<script scr="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		
+		<script scr="{{ "js/modernizr.js" | absURL }}"></script>
+		<script src="{{ "js/general.js" | absURL }}"></script>
+	</head>
+	<body>		
+		<div id="pagina">
+			<header>{{ partial "header" . }}</header>
+						
+			<section id="contenido">
+				<div class="dec1">
+					<div class="dec2">{{ block "main" . }}{{ end }}</div>
+				</div>
+			</section>
+				
+			<footer>{{ partial "footer" . }}</footer>
+		</div>
+	</body>
+</html>
