@@ -6,7 +6,7 @@ body{
 	font-size: 16px;
 	font-family: #{$fuenteLondrinaSolid};
 	background-color: #363636;
-	background-image: url(/images/batelfiel/fondo.jpg);
+	background-image: url(../images/batelfiel/fondo.jpg);
 	background-size: cover;
 }
 
@@ -69,7 +69,7 @@ article{
 				display: block;
 				width: 36px;
 				height: 37px;
-				background: url(/images/batelfiel/social.png) 0 0 no-repeat;
+				background: url(../images/batelfiel/social.png) 0 0 no-repeat;
 			}
 			
 			&.battlelog a{
@@ -123,13 +123,13 @@ article{
 // Contenido
 
 #contenido{
-	background: url(/images/batelfiel/fondo_cen.gif) 0 0 repeat-y;
+	background: url(../images/batelfiel/fondo_cen.gif) 0 0 repeat-y;
 	
 	.dec1{
-		background: url(/images/batelfiel/fondo_sup.gif) 0 0 no-repeat;
+		background: url(../images/batelfiel/fondo_sup.gif) 0 0 no-repeat;
 		
 		.dec2{
-			background: url(/images/batelfiel/fondo_inf.gif) 0 100% no-repeat;
+			background: url(../images/batelfiel/fondo_inf.gif) 0 100% no-repeat;
 			min-height: 110px;
 			padding-bottom: 1em;
 		}
@@ -193,7 +193,7 @@ article{
 				float: left;
 				
 				&.anterior a,&.siguiente a{
-			    	background: url(/images/batelfiel/boton_sig_ant.jpg) 0 0 no-repeat;
+			    	background: url(../images/batelfiel/boton_sig_ant.jpg) 0 0 no-repeat;
 			    }
 				
 				a{
@@ -257,7 +257,7 @@ article{
 	
 	ul li{
 		&.anterior a, &.siguiente a{
-			background-image: url(/images/batelfiel/flecha_tiras.gif);
+			background-image: url(../images/batelfiel/flecha_tiras.gif);
 			background-repeat: no-repeat;
 		}
 		&.anterior a, &.siguiente a,
@@ -307,7 +307,7 @@ article{
 			}
 			a{
 				position: relative;
-			    background-image: url(/images/batelfiel/recuadro_miniatura.jpg);
+			    background-image: url(../images/batelfiel/recuadro_miniatura.jpg);
 			    opacity: 0.6;
 			}
 			&.actual a,
@@ -324,7 +324,7 @@ article{
 				height: 18px;
 				left: 50px;
 				top: -13px;
-				background: url(/images/batelfiel/flecha_miniatura.gif) 0 0 no-repeat;
+				background: url(../images/batelfiel/flecha_miniatura.gif) 0 0 no-repeat;
 			}
 			&.actual span{
 				display: block;
