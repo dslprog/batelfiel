@@ -57,10 +57,9 @@
                 <a class="addthis_button_compact"></a>
                 <a class="addthis_counter addthis_bubble_style"></a>
             </div>
-            <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#pubid=xa-5050d5b8725ae25c"></script>
         </div>			
 
-        <img class="vistaPrevia" src="{{ $mainImage.RelPermalink }}" alt="Tira #{{ .Params.orden }}"/>
+        <img class="vistaPrevia" src="{{ $mainImage.RelPermalink }}" width="{{ $mainImage.Width }}" height="{{ $mainImage.Height }}" alt="Tira #{{ .Params.orden }}"/>
         <ul>
             <li class="primera"><a class="activo" href="{{ $firstPage.RelPermalink }}">Ver la más antigua</a></li>
 
@@ -109,7 +108,7 @@
                 <li class="miniatura col_{{ add $index 1 }}{{ if $actual }} actual{{ end }}">
                     <a href="{{ $page.RelPermalink }}">
                         <span></span>
-                        <img src="{{ $thumbnail.RelPermalink }}" alt="Miniatura de tira #{{ $order }}" />
+                        <img src="{{ $thumbnail.RelPermalink }}" width="{{ $thumbnail.Width }}" height="{{ $thumbnail.Height }}" alt="Miniatura de tira #{{ $order }}" />
                     </a>
                     <p>{{ (print $order ". " .Title) | safeHTML }}{{ with $page.Params.fechaPub }}<br/>{{ dateFormat "02-01-2006" . }}{{ end }}</p>
                 </li>					
